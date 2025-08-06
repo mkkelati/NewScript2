@@ -6,7 +6,7 @@ A comprehensive Bash script for managing SSH accounts, Stunnel SSL tunnels, and 
 
 **Install and run with one command:**
 ```bash
-sudo apt update && sudo apt upgrade -y && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh
+sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh || echo "Installation cancelled."
 ```
 
 ## Features
@@ -51,12 +51,12 @@ sudo apt update && sudo apt upgrade -y && curl -O https://raw.githubusercontent.
 
 **One-line installation command (recommended):**
 ```bash
-sudo apt update && sudo apt upgrade -y && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh
+sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh || echo "Installation cancelled."
 ```
 
 **Alternative with wget:**
 ```bash
-sudo apt update && sudo apt upgrade -y && wget https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh
+sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && wget https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh || echo "Installation cancelled."
 ```
 
 **Step by step installation:**
