@@ -6,7 +6,7 @@ A comprehensive Bash script for managing SSH accounts, Stunnel SSL tunnels, and 
 
 **Install and run with one command:**
 ```bash
-sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh || echo "Installation cancelled."
+sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh --first-run || echo "Installation cancelled."
 ```
 
 ## Features
@@ -20,12 +20,16 @@ sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated su
 - **Connection Monitoring**: Real-time monitoring of active connections and services
 
 ### Advanced Features
-- **Color-coded Output**: Green for success, red for errors, yellow for warnings
-- **Comprehensive Logging**: All activities logged to `/var/log/ssh-manager.log`
+- **Color-coded Output**: Professional interface with emoji indicators and color coding
+- **Progress Feedback**: Real-time installation progress with progress bars and spinners
+- **User Confirmation**: Explicit confirmation prompts before system changes
+- **Comprehensive Logging**: All activities logged to `/var/log/ssh-manager.log` with timestamps
 - **Input Validation**: Secure against malformed input and duplicate users
 - **QR Code Generation**: Generate QR codes for V2Ray client configurations
 - **Config Templates**: Generate `.ehi` files for HTTP Custom/HTTP Injector apps
-- **Connection Info Display**: Comprehensive server and service status information
+- **System Health Check**: Real-time monitoring and status reporting
+- **Auto Cleanup**: Automatic cleanup of expired SSH accounts
+- **Command System**: Type 'menu', 'status', 'help' commands for quick access
 
 ### Security Features
 - **SSL Certificate Generation**: Auto-generate self-signed certificates
@@ -51,12 +55,12 @@ sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated su
 
 **One-line installation command (recommended):**
 ```bash
-sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh || echo "Installation cancelled."
+sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh --first-run || echo "Installation cancelled."
 ```
 
 **Alternative with wget:**
 ```bash
-sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && wget https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh || echo "Installation cancelled."
+sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && wget https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh --first-run || echo "Installation cancelled."
 ```
 
 **Step by step installation:**
@@ -79,8 +83,21 @@ sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated su
 
 4. **Run as root:**
    ```bash
-   sudo ./ssh-vpn-manager.sh
+   sudo ./ssh-vpn-manager.sh --first-run
    ```
+
+### After Installation
+
+Once installed, you can access the script using:
+```bash
+# Access main menu
+sudo ./ssh-vpn-manager.sh
+
+# Quick commands
+sudo ./ssh-vpn-manager.sh menu    # Show main menu
+sudo ./ssh-vpn-manager.sh status  # System health check
+sudo ./ssh-vpn-manager.sh help    # Show help
+```
 
 ### Manual Installation
 
