@@ -2,6 +2,13 @@
 
 A comprehensive Bash script for managing SSH accounts, Stunnel SSL tunnels, and V2Ray proxy configurations on Ubuntu servers. This script provides an easy-to-use menu-based interface for setting up and managing VPN/proxy services.
 
+## 🚀 Quick Start
+
+**Install and run with one command:**
+```bash
+sudo apt update && sudo apt upgrade -y && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh
+```
+
 ## Features
 
 ### Core Functionality
@@ -42,19 +49,35 @@ A comprehensive Bash script for managing SSH accounts, Stunnel SSL tunnels, and 
 
 ### Quick Installation
 
-1. **Download the script:**
+**One-line installation command (recommended):**
+```bash
+sudo apt update && sudo apt upgrade -y && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh
+```
+
+**Alternative with wget:**
+```bash
+sudo apt update && sudo apt upgrade -y && wget https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh
+```
+
+**Step by step installation:**
+1. **Update and upgrade system:**
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   ```
+
+2. **Download the script:**
    ```bash
    wget https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh
    # OR
    curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh
    ```
 
-2. **Make it executable:**
+3. **Make it executable:**
    ```bash
    chmod +x ssh-vpn-manager.sh
    ```
 
-3. **Run as root:**
+4. **Run as root:**
    ```bash
    sudo ./ssh-vpn-manager.sh
    ```
