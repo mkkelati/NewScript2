@@ -4,9 +4,14 @@ A comprehensive Bash script for managing SSH accounts, Stunnel SSL tunnels, and 
 
 ## 🚀 Quick Start
 
-**Install and run with one command:**
+**Super Easy Installation (Recommended):**
 ```bash
-sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh --first-run || echo "Installation cancelled."
+curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
+```
+
+**Alternative one-line installation:**
+```bash
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh)"
 ```
 
 ## Features
@@ -53,14 +58,19 @@ sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated su
 
 ### Quick Installation
 
-**One-line installation command (recommended):**
+**Super Easy Method (Recommended):**
 ```bash
-sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh --first-run || echo "Installation cancelled."
+curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
 ```
 
-**Alternative with wget:**
+**Alternative Easy Method:**
 ```bash
-sudo apt update && sudo apt upgrade -y && echo -e "\n\033[1;33mSystem updated successfully!\033[0m" && read -p "Do you want to install SSH/VPN Manager? (y/n): " -n 1 -r && echo && [[ $REPLY =~ ^[Yy]$ ]] && wget https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh && chmod +x ssh-vpn-manager.sh && sudo ./ssh-vpn-manager.sh --first-run || echo "Installation cancelled."
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh)"
+```
+
+**With wget:**
+```bash
+wget -qO- https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
 ```
 
 **Step by step installation:**
