@@ -39,11 +39,9 @@ echo -e "${BLUE}  2) Xray-core (VLESS + WebSocket + TLS)${NC}"
 echo -en "${WHITE}Select [1-2]: ${NC}"
 read -r install_type
 
-read -p "Do you want to continue? [Y/n]: " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]?$ ]]; then
-    echo -e "${YELLOW}Installation cancelled.${NC}"
-    exit 0
+if [[ "$install_type" != "1" && "$install_type" != "2" ]]; then
+    echo -e "${RED}❌ Invalid selection${NC}"
+    exit 1
 fi
 
 # Update system
