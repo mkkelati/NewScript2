@@ -33,10 +33,11 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Get user confirmation
-echo -e "${YELLOW}⚠️  This will:${NC}"
-echo -e "${BLUE}  • Update your system packages${NC}"
-echo -e "${BLUE}  • Install SSH Manager${NC}"
-echo -e "${BLUE}  • Set up the 'menu' command${NC}\n"
+echo -e "${YELLOW}⚠️  Choose installation type:${NC}"
+echo -e "${BLUE}  1) SSH Manager (OpenSSH + Stunnel + V2Ray)${NC}"
+echo -e "${BLUE}  2) Xray-core (VLESS + WebSocket + TLS)${NC}"
+echo -en "${WHITE}Select [1-2]: ${NC}"
+read -r install_type
 
 read -p "Do you want to continue? [Y/n]: " -n 1 -r
 echo
@@ -54,47 +55,63 @@ else
     exit 1
 fi
 
-# Download SSH Manager
-echo -e "\n${BLUE}⬇️  Downloading SSH Manager...${NC}"
-if curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-manager.sh -o /usr/local/bin/ssh-manager.sh; then
-    echo -e "${GREEN}✅ SSH Manager downloaded successfully!${NC}"
-else
-    echo -e "${RED}❌ Failed to download SSH Manager${NC}"
-    exit 1
-fi
+case $install_type in
+    1)
+        # Download SSH Manager
+        echo -e "\n${BLUE}⬇️  Downloading SSH Manager...${NC}"
+        if curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/ssh-manager.sh -o /usr/local/bin/ssh-manager.sh; then
+            echo -e "${GREEN}✅ SSH Manager downloaded successfully!${NC}"
+        else
+            echo -e "${RED}❌ Failed to download SSH Manager${NC}"
+            exit 1
+        fi
 
-# Make executable
-chmod +x /usr/local/bin/ssh-manager.sh
+        # Make executable
+        chmod +x /usr/local/bin/ssh-manager.sh
 
-# Create menu command
-echo -e "\n${BLUE}🔧 Creating 'menu' command...${NC}"
-cat > /usr/local/bin/menu << 'EOF'
+        # Create menu command
+        echo -e "\n${BLUE}🔧 Creating 'menu' command...${NC}"
+        cat > /usr/local/bin/menu << 'EOF'
 #!/bin/bash
 exec /usr/local/bin/ssh-manager.sh menu
 EOF
-chmod +x /usr/local/bin/menu
+        chmod +x /usr/local/bin/menu
 
-# Create sshm alias
-cat > /usr/local/bin/sshm << 'EOF'
+        # Create sshm alias
+        cat > /usr/local/bin/sshm << 'EOF'
 #!/bin/bash
 exec /usr/local/bin/ssh-manager.sh "$@"
 EOF
-chmod +x /usr/local/bin/sshm
+        chmod +x /usr/local/bin/sshm
 
-echo -e "${GREEN}✅ Commands installed successfully!${NC}"
+        echo -e "${GREEN}✅ SSH Manager installed successfully!${NC}"
 
-# Run first-time setup
-echo -e "\n${BLUE}🔧 Starting SSH Manager setup...${NC}"
-echo -e "${YELLOW}Please follow the prompts in the SSH Manager.${NC}\n"
+        # Run first-time setup
+        echo -e "\n${BLUE}🔧 Starting SSH Manager setup...${NC}"
+        /usr/local/bin/ssh-manager.sh --first-run
 
-# Add a small delay for user to read
-sleep 2
+        echo -e "\n${GREEN}🎉 SSH Manager installation completed!${NC}"
+        echo -e "${CYAN}You can now use: ${GREEN}menu${NC} or ${GREEN}sshm${NC}"
+        ;;
+        
+    2)
+        # Download Xray installer
+        echo -e "\n${BLUE}⬇️  Downloading Xray installer...${NC}"
+        if curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/xray-installer.sh -o xray-installer.sh; then
+            echo -e "${GREEN}✅ Xray installer downloaded successfully!${NC}"
+        else
+            echo -e "${RED}❌ Failed to download Xray installer${NC}"
+            exit 1
+        fi
 
-# Launch SSH Manager
-/usr/local/bin/ssh-manager.sh --first-run
-
-echo -e "\n${GREEN}🎉 Installation completed!${NC}"
-echo -e "${CYAN}You can now use these commands:${NC}"
-echo -e "${WHITE}  • ${GREEN}menu${WHITE} - Open SSH Manager menu${NC}"
-echo -e "${WHITE}  • ${GREEN}sshm${WHITE} - Run SSH Manager${NC}"
-echo -e "${WHITE}  • ${GREEN}sudo ssh-manager.sh${WHITE} - Full path${NC}" 
+        # Make executable and run
+        chmod +x xray-installer.sh
+        echo -e "\n${BLUE}🔧 Starting Xray installation...${NC}"
+        ./xray-installer.sh
+        ;;
+        
+    *)
+        echo -e "${RED}❌ Invalid selection${NC}"
+        exit 1
+        ;;
+esac 
