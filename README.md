@@ -6,12 +6,12 @@ A professional Bash script for managing OpenSSH, Stunnel SSL tunnels, and V2Ray 
 
 **Super Easy Installation (Recommended):**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
+sudo apt update && sudo apt upgrade -y && curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
 ```
 
 **Alternative one-line installation:**
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh)"
+sudo apt update && sudo apt upgrade -y && sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh)"
 ```
 
 ## Features
@@ -60,17 +60,17 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/
 
 **Super Easy Method (Recommended):**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
+sudo apt update && sudo apt upgrade -y && curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
 ```
 
 **Alternative Easy Method:**
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh)"
+sudo apt update && sudo apt upgrade -y && sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh)"
 ```
 
 **With wget:**
 ```bash
-wget -qO- https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
+sudo apt update && sudo apt upgrade -y && wget -qO- https://raw.githubusercontent.com/mkkelati/NewScript/main/install.sh | sudo bash
 ```
 
 **Step by step installation:**
