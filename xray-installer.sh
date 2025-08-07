@@ -194,7 +194,9 @@ issue_certificate() {
             --reloadcmd "systemctl restart xray"
         
         chmod 644 /usr/local/etc/xray/ssl/cert.crt
-        chmod 600 /usr/local/etc/xray/ssl/private.key
+        chmod 644 /usr/local/etc/xray/ssl/private.key
+        chown nobody:nogroup /usr/local/etc/xray/ssl/private.key
+        chown nobody:nogroup /usr/local/etc/xray/ssl/cert.crt
         
         log_message "SUCCESS" "SSL certificate issued and installed"
     else
