@@ -1,6 +1,6 @@
-# SSH/VPN Manager Script
+# SSH Manager Script v3.0
 
-A comprehensive Bash script for managing SSH accounts, Stunnel SSL tunnels, and V2Ray proxy configurations on Ubuntu servers. This script provides an easy-to-use menu-based interface for setting up and managing VPN/proxy services.
+A professional Bash script for managing OpenSSH, Stunnel SSL tunnels, and V2Ray (optimized for HTTP Injector) on Ubuntu servers. Features a working `menu` command, easy uninstall, and full automation.
 
 ## 🚀 Quick Start
 
@@ -17,12 +17,12 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/
 ## Features
 
 ### Core Functionality
-- **Menu-based Interface**: Easy-to-use interactive menu system
+- **Working 'menu' Command**: Type `menu` anywhere to access the manager
 - **SSH Account Management**: Create, delete, and monitor SSH user accounts
-- **Stunnel SSL Tunnel**: Configure SSL tunnels from port 443 to SSH port 22
-- **V2Ray Proxy Server**: Auto-configure Vmess and Vless protocols with TCP and WebSocket support
-- **Dependency Management**: Automated installation of required packages
-- **Connection Monitoring**: Real-time monitoring of active connections and services
+- **Stunnel SSL Tunnel**: Custom port configuration with SSL forwarding to SSH
+- **V2Ray HTTP Injector**: VLESS + WebSocket optimized for HTTP Injector app
+- **Easy Uninstall**: Complete removal with `--uninstall` option
+- **Auto Installation**: First-run setup with user confirmations
 
 ### Advanced Features
 - **Color-coded Output**: Professional interface with emoji indicators and color coding

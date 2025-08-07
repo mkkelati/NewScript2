@@ -35,8 +35,8 @@ fi
 # Get user confirmation
 echo -e "${YELLOW}⚠️  This will:${NC}"
 echo -e "${BLUE}  • Update your system packages${NC}"
-echo -e "${BLUE}  • Install SSH/VPN Manager${NC}"
-echo -e "${BLUE}  • Set up dependencies${NC}\n"
+echo -e "${BLUE}  • Install SSH Manager${NC}"
+echo -e "${BLUE}  • Set up the 'menu' command${NC}\n"
 
 read -p "Do you want to continue? [Y/n]: " -n 1 -r
 echo
@@ -56,7 +56,7 @@ fi
 
 # Download SSH Manager
 echo -e "\n${BLUE}⬇️  Downloading SSH Manager...${NC}"
-if curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh -o ssh-vpn-manager.sh; then
+if curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-manager.sh -o /usr/local/bin/ssh-manager.sh; then
     echo -e "${GREEN}✅ SSH Manager downloaded successfully!${NC}"
 else
     echo -e "${RED}❌ Failed to download SSH Manager${NC}"
@@ -64,7 +64,24 @@ else
 fi
 
 # Make executable
-chmod +x ssh-vpn-manager.sh
+chmod +x /usr/local/bin/ssh-manager.sh
+
+# Create menu command
+echo -e "\n${BLUE}🔧 Creating 'menu' command...${NC}"
+cat > /usr/local/bin/menu << 'EOF'
+#!/bin/bash
+exec /usr/local/bin/ssh-manager.sh menu
+EOF
+chmod +x /usr/local/bin/menu
+
+# Create sshm alias
+cat > /usr/local/bin/sshm << 'EOF'
+#!/bin/bash
+exec /usr/local/bin/ssh-manager.sh "$@"
+EOF
+chmod +x /usr/local/bin/sshm
+
+echo -e "${GREEN}✅ Commands installed successfully!${NC}"
 
 # Run first-time setup
 echo -e "\n${BLUE}🔧 Starting SSH Manager setup...${NC}"
@@ -74,7 +91,10 @@ echo -e "${YELLOW}Please follow the prompts in the SSH Manager.${NC}\n"
 sleep 2
 
 # Launch SSH Manager
-./ssh-vpn-manager.sh --first-run
+/usr/local/bin/ssh-manager.sh --first-run
 
 echo -e "\n${GREEN}🎉 Installation completed!${NC}"
-echo -e "${CYAN}You can now run SSH Manager with: ${GREEN}sudo ./ssh-vpn-manager.sh${NC}" 
+echo -e "${CYAN}You can now use these commands:${NC}"
+echo -e "${WHITE}  • ${GREEN}menu${WHITE} - Open SSH Manager menu${NC}"
+echo -e "${WHITE}  • ${GREEN}sshm${WHITE} - Run SSH Manager${NC}"
+echo -e "${WHITE}  • ${GREEN}sudo ssh-manager.sh${WHITE} - Full path${NC}" 
