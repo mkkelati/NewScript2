@@ -1,379 +1,248 @@
-# SSH Manager Script v3.0
+# Professional Xray Manager v3.0
 
-A professional Bash script for managing OpenSSH, Stunnel SSL tunnels, and V2Ray (optimized for HTTP Injector) on Ubuntu servers. Features a working `menu` command, easy uninstall, and full automation.
+A comprehensive VLESS+WebSocket+TLS management system with advanced user management, real-time monitoring, and professional features.
 
-## 🚀 Quick Start
+## 🚀 Features
 
-**Super Easy Installation (Recommended):**
+### ✅ Complete User Management System
+- **Add/Delete Users**: Full user lifecycle management
+- **UUID Management**: Generate random or set custom UUIDs
+- **Expiry Control**: Set expiry dates with automatic cleanup
+- **Device Limits**: Control max IPs/devices per user
+- **Custom Paths**: Individual WebSocket paths per user
+- **Connection URLs**: Auto-generate VLESS links (TLS + HTTP)
+
+### ✅ Real-Time Monitoring
+- **Online Users**: Live connection tracking
+- **Usage Statistics**: Per-user connection logs
+- **System Status**: Service health monitoring
+- **Port Statistics**: Real-time connection counts
+
+### ✅ Domain & Configuration Management
+- **Manual Domain Setting**: No auto-DNS fetching
+- **Port Management**: Custom TLS (443) and HTTP (80) ports
+- **WebSocket Paths**: Configurable paths per user
+- **SSL Certificate**: Maintains existing TLS setup
+
+### ✅ Backup & Logging
+- **Daily Backups**: Automatic user database backups
+- **Usage Logs**: Detailed connection tracking
+- **Expired Cleanup**: Automatic removal of expired users
+- **Persistent Storage**: All settings survive reboots
+
+## 📦 Installation
+
+### Quick Installation (Recommended)
+
 ```bash
-sudo apt update && sudo apt upgrade -y && curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/install.sh | sudo bash
+# Install the professional Xray manager
+curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/xray-manager.sh -o /usr/local/bin/xray-manager && chmod +x /usr/local/bin/xray-manager
+
+# Run the manager
+sudo xray-manager
 ```
 
-**Alternative one-line installation:**
+### Alternative Installation
+
 ```bash
-sudo apt update && sudo apt upgrade -y && sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/install.sh)"
+# Download and install
+wget https://raw.githubusercontent.com/mkkelati/NewScript2/master/xray-manager.sh
+chmod +x xray-manager.sh
+sudo mv xray-manager.sh /usr/local/bin/xray-manager
+
+# Run the manager
+sudo xray-manager
 ```
 
-## Features
+## 🎯 Usage
 
-### Core Functionality
-- **Working 'menu' Command**: Type `menu` anywhere to access the manager
-- **SSH Account Management**: Create, delete, and monitor SSH user accounts
-- **Stunnel SSL Tunnel**: Custom port configuration with SSL forwarding to SSH
-- **V2Ray HTTP Injector**: VLESS + WebSocket optimized for HTTP Injector app
-- **Easy Uninstall**: Complete removal with `--uninstall` option
-- **Auto Installation**: First-run setup with user confirmations
+### Main Menu Interface
 
-### Advanced Features
-- **Color-coded Output**: Professional interface with emoji indicators and color coding
-- **Progress Feedback**: Real-time installation progress with progress bars and spinners
-- **User Confirmation**: Explicit confirmation prompts before system changes
-- **Comprehensive Logging**: All activities logged to `/var/log/ssh-manager.log` with timestamps
-- **Input Validation**: Secure against malformed input and duplicate users
-- **QR Code Generation**: Generate QR codes for V2Ray client configurations
-- **Config Templates**: Generate `.ehi` files for HTTP Custom/HTTP Injector apps
-- **System Health Check**: Real-time monitoring and status reporting
-- **Auto Cleanup**: Automatic cleanup of expired SSH accounts
-- **Command System**: Type 'menu', 'status', 'help' commands for quick access
-
-### Security Features
-- **SSL Certificate Generation**: Auto-generate self-signed certificates
-- **Password Validation**: Enforce strong password requirements
-- **Account Expiration**: Set automatic account expiration dates
-- **Service Isolation**: Proper service configuration and permissions
-- **Logging and Monitoring**: Comprehensive activity tracking
-
-## Compatibility
-
-- **Ubuntu 18.04 LTS**
-- **Ubuntu 20.04 LTS** 
-- **Ubuntu 22.04 LTS**
-
-## Installation
-
-### Prerequisites
-- Ubuntu server with root access
-- Internet connection for downloading dependencies
-- Minimum 1GB RAM and 10GB disk space
-
-### Quick Installation
-
-**Super Easy Method (Recommended):**
+Run the manager with:
 ```bash
-sudo apt update && sudo apt upgrade -y && curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/install.sh | sudo bash
+sudo xray-manager
 ```
 
-**Alternative Easy Method:**
+### Command Line Interface
+
 ```bash
-sudo apt update && sudo apt upgrade -y && sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/install.sh)"
+# Add a new user
+sudo xray-manager add-user
+
+# List all users
+sudo xray-manager list-users
+
+# Clean expired users
+sudo xray-manager cleanup-expired
 ```
 
-**With wget:**
-```bash
-sudo apt update && sudo apt upgrade -y && wget -qO- https://raw.githubusercontent.com/mkkelati/NewScript2/master/install.sh | sudo bash
+## 📋 Menu Features
+
+### 1. User Management
+- **Add New User**: Create users with custom settings
+- **Delete User**: Remove users from system
+- **List All Users**: View all users with status
+- **Show Connection Links**: Generate VLESS URLs
+
+### 2. Monitoring & Logs
+- **Show Online Users**: Real-time active connections
+- **View Usage Logs**: Connection history and statistics
+- **System Status**: Service and certificate health
+
+### 3. Configuration
+- **Domain & Port Management**: Modify server settings
+- **Backup Database**: Create user data backups
+- **Cleanup Expired**: Remove expired users
+
+### 4. System Operations
+- **Restart Service**: Restart Xray service
+- **Update Configuration**: Apply config changes
+
+## 🔧 Configuration Files
+
+- **User Database**: `/etc/xray-manager/users.db`
+- **Config Database**: `/etc/xray-manager/config.db`
+- **Xray Config**: `/usr/local/etc/xray/config.json`
+- **Logs**: `/var/log/xray/`
+- **Backups**: `/etc/xray-manager/backups/`
+
+## 📊 User Management
+
+### Adding Users
+1. Username and UUID (auto-generated or custom)
+2. Expiry date (30/60/90 days, custom, or never)
+3. Maximum devices (1-10 connections)
+4. Custom WebSocket path
+
+### User Status
+- **ACTIVE**: User can connect
+- **EXPIRED**: Automatically disabled
+- **DISABLED**: Manually disabled
+
+### Connection URLs
+- **TLS (Primary)**: `vless://UUID@domain:443?type=ws&security=tls...`
+- **HTTP (Fallback)**: `vless://UUID@domain:80?type=ws&security=none...`
+
+## 🔍 Monitoring Features
+
+### Real-Time Statistics
+- Online user count
+- Connection duration tracking
+- IP address monitoring
+- Port usage statistics
+
+### Usage Logs
+- Daily connection logs
+- Per-user statistics
+- Error log monitoring
+- Access pattern analysis
+
+## 🔐 Security Features
+
+- **SSL/TLS Encryption**: Maintains existing certificates
+- **User Isolation**: UUID-based access control
+- **Device Limiting**: Prevent connection abuse
+- **Automatic Cleanup**: Remove expired accounts
+- **Secure Storage**: Protected user database
+
+## ☁️ Cloudflare Compatibility
+
+Fully compatible with Cloudflare CDN:
+- **DNS A Record**: `domain → server_ip` (Proxied)
+- **SSL/TLS Mode**: Full (Strict)
+- **WebSocket Support**: Automatic with proxy
+- **Headers**: Proper Host/SNI configuration
+
+## 📱 Client Configuration
+
+### For HTTP Injector
+```
+Protocol: VLESS
+Transport: WebSocket
+Host/SNI: your-domain.com
+Path: /vpn (or custom path)
+TLS: Enabled (for port 443)
 ```
 
-**Step by step installation:**
-1. **Update and upgrade system:**
-   ```bash
-   sudo apt update && sudo apt upgrade -y
-   ```
+### For V2Ray Clients
+Use the generated VLESS URLs directly from the manager.
 
-2. **Download the script:**
-   ```bash
-   wget https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh
-   # OR
-   curl -O https://raw.githubusercontent.com/mkkelati/NewScript/main/ssh-vpn-manager.sh
-   ```
+## 🛠️ Prerequisites
 
-3. **Make it executable:**
-   ```bash
-   chmod +x ssh-vpn-manager.sh
-   ```
+- Ubuntu 18.04+ / Debian 9+
+- Root access
+- Existing Xray installation (or use custom-xray-setup.sh first)
+- Valid SSL certificate
 
-4. **Run as root:**
-   ```bash
-   sudo ./ssh-vpn-manager.sh --first-run
-   ```
+## 🔄 Automatic Features
 
-### After Installation
+- **Daily Cleanup**: Removes expired users at 2 AM
+- **Config Sync**: Auto-updates Xray configuration
+- **Service Management**: Automatic restarts on config changes
+- **Backup Rotation**: Keeps last 10 backups
 
-Once installed, you can access the script using:
-```bash
-# Access main menu
-sudo ./ssh-vpn-manager.sh
-
-# Quick commands
-sudo ./ssh-vpn-manager.sh menu    # Show main menu
-sudo ./ssh-vpn-manager.sh status  # System health check
-sudo ./ssh-vpn-manager.sh help    # Show help
-```
-
-### Manual Installation
-
-1. Copy the `ssh-vpn-manager.sh` script to your Ubuntu server
-2. Set execute permissions: `chmod +x ssh-vpn-manager.sh`
-3. Run with root privileges: `sudo ./ssh-vpn-manager.sh`
-
-## Usage
-
-### First Time Setup
-
-1. **Run the script:**
-   ```bash
-   sudo ./ssh-vpn-manager.sh
-   ```
-
-2. **Install dependencies (Option 5):**
-   - This will install openssh-server, stunnel4, v2ray-core, and other required packages
-   - The process may take several minutes depending on your internet connection
-
-3. **Configure services:**
-   - Use Option 6 to set up Stunnel SSL tunnel
-   - Use Option 7 to configure V2Ray proxy server
-
-### Menu Options
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        MAIN MENU                           │
-├─────────────────────────────────────────────────────────────┤
-│  1) Create SSH Account                                      │
-│  2) Delete SSH Account                                      │
-│  3) List Active SSH Users                                  │
-│  4) Monitor Online Users                                   │
-│  5) Install Dependencies                                   │
-│  6) Configure and Start Stunnel                          │
-│  7) Configure and Start V2Ray                            │
-│  8) Show Connection Information                           │
-│  9) Generate Config Templates                             │
-│ 10) Generate QR Codes                                     │
-│  0) Exit                                                   │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Detailed Menu Guide
-
-#### 1. Create SSH Account
-- **Username**: 3-32 characters, alphanumeric with underscore and dash
-- **Password**: Minimum 6 characters with confirmation
-- **Expiration**: 1-365 days from creation date
-- **Security**: Validates input and checks for existing users
-
-#### 2. Delete SSH Account
-- Lists all existing SSH users (excluding system accounts)
-- Requires confirmation before deletion
-- Safely removes user and home directory
-
-#### 3. List Active SSH Users
-- Displays comprehensive user information table
-- Shows UID, home directory, and expiration date
-- Excludes system and service accounts
-
-#### 4. Monitor Online Users
-- Real-time display of logged-in users
-- Shows terminal, login time, and source IP
-- Displays active SSH connection count
-
-#### 5. Install Dependencies
-- **Automatic package installation:**
-  - openssh-server (SSH service)
-  - stunnel4 (SSL tunnel)
-  - openssl (SSL certificates)
-  - curl, wget (downloading tools)
-  - unzip (archive extraction)
-  - qrencode (QR code generation)
-  - jq (JSON processing)
-  - v2ray-core (V2Ray proxy)
-
-#### 6. Configure and Start Stunnel
-- **SSL Certificate**: Auto-generates self-signed certificate
-- **Service Configuration**: Creates optimized stunnel.conf
-- **Port Mapping**: 443 (SSL) → 22 (SSH)
-- **Security Settings**: Modern SSL/TLS configuration
-- **Service Management**: Enables and starts systemd service
-
-#### 7. Configure and Start V2Ray
-- **Protocol Support**: Vmess and Vless
-- **Transport Options**: TCP and WebSocket
-- **Port Configuration:**
-  - Vmess TCP: 8080
-  - Vmess WebSocket: 8081
-  - Vless TCP: 8082
-  - Vless WebSocket: 8083
-- **UUID Generation**: Automatic UUID creation
-- **Connection Strings**: Generated for easy client setup
-
-#### 8. Show Connection Information
-- **Server Details**: IP address and hostname
-- **Service Status**: Real-time status of all services
-- **Port Usage**: Active/available port monitoring
-- **Connection Statistics**: Current SSH connections
-- **Log Analysis**: Recent login attempts from auth logs
-
-#### 9. Generate Config Templates
-- **HTTP Custom (.ehi)**: Configuration for HTTP Custom app
-- **HTTP Injector (.ehi)**: Configuration for HTTP Injector app
-- **OpenVPN (.ovpn)**: Template for OpenVPN client
-- **Shadowsocks (.json)**: Manual proxy configuration
-- **Connection Guide**: Comprehensive setup instructions
-
-#### 10. Generate QR Codes
-- **PNG Images**: High-quality QR codes for all V2Ray configs
-- **ASCII Display**: Terminal-friendly QR code display
-- **Configuration Strings**: Ready-to-use connection URLs
-- **Summary File**: Complete configuration reference
-
-## Configuration Files
-
-### Locations
-- **Stunnel**: `/etc/stunnel/stunnel.conf`
-- **V2Ray**: `/usr/local/etc/v2ray/config.json`
-- **SSL Certificate**: `/etc/stunnel/stunnel.pem`
-- **Log File**: `/var/log/ssh-manager.log`
-
-### Generated Files
-- **V2Ray Configs**: `/tmp/v2ray-configs.txt`
-- **QR Codes**: `/tmp/v2ray-qrcodes/`
-- **Config Templates**: `/tmp/vpn-configs/`
-
-## Port Configuration
-
-| Service | Port | Protocol | Purpose |
-|---------|------|----------|---------|
-| SSH | 22 | TCP | Direct SSH access |
-| Stunnel | 443 | TCP/SSL | SSL tunnel to SSH |
-| V2Ray Vmess TCP | 8080 | TCP | Vmess protocol |
-| V2Ray Vmess WS | 8081 | TCP/WS | Vmess over WebSocket |
-| V2Ray Vless TCP | 8082 | TCP | Vless protocol |
-| V2Ray Vless WS | 8083 | TCP/WS | Vless over WebSocket |
-
-## Client Setup
-
-### SSH Clients
-1. **Direct SSH**: `ssh username@server_ip`
-2. **SSH over SSL**: `ssh username@server_ip -p 443`
-
-### V2Ray Clients
-1. **V2RayNG (Android)**: Scan QR codes or import URLs
-2. **V2RayN (Windows)**: Import configuration strings
-3. **V2RayX (macOS)**: Use generated configuration files
-
-### HTTP Custom/Injector
-1. Download generated `.ehi` files
-2. Import in HTTP Custom or HTTP Injector app
-3. Replace USERNAME_HERE and PASSWORD_HERE with actual credentials
-
-## Security Considerations
-
-### Best Practices
-- **Change Default Passwords**: Use strong, unique passwords
-- **Enable Key Authentication**: Configure SSH key-based auth when possible
-- **Regular Updates**: Keep system packages updated
-- **Monitor Logs**: Regularly check `/var/log/ssh-manager.log`
-- **Firewall Configuration**: Configure UFW or iptables appropriately
-
-### Firewall Rules
-```bash
-# Allow SSH and VPN ports
-ufw allow 22/tcp
-ufw allow 443/tcp
-ufw allow 8080:8083/tcp
-ufw enable
-```
-
-## Troubleshooting
+## 📞 Troubleshooting
 
 ### Common Issues
 
-#### Services Not Starting
-```bash
-# Check service status
-systemctl status ssh
-systemctl status stunnel4
-systemctl status v2ray
+1. **Permission Denied**: Run with `sudo`
+2. **Service Not Running**: Check `sudo systemctl status xray`
+3. **Connection Failed**: Verify domain DNS and SSL certificate
+4. **User Not Connecting**: Check expiry date and device limits
 
-# Check logs
-journalctl -u ssh -f
-journalctl -u stunnel4 -f
-journalctl -u v2ray -f
+### Log Files
+```bash
+# Manager logs
+tail -f /var/log/xray/manager.log
+
+# Access logs
+tail -f /var/log/xray/access.log
+
+# Error logs
+tail -f /var/log/xray/error.log
 ```
 
-#### Connection Problems
-1. **Verify server IP**: Use Option 8 to check connection info
-2. **Check port availability**: Ensure ports aren't blocked by firewall
-3. **Validate credentials**: Confirm username/password are correct
-4. **Service status**: Ensure all required services are running
+## 🎉 Quick Start (If Xray Not Installed)
 
-#### SSL Certificate Issues
-```bash
-# Regenerate certificate
-openssl req -new -x509 -days 365 -nodes \
-    -out /etc/stunnel/stunnel.pem \
-    -keyout /etc/stunnel/stunnel.pem
-chmod 600 /etc/stunnel/stunnel.pem
-systemctl restart stunnel4
-```
+1. **Install Xray first**:
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/custom-xray-setup.sh | sudo bash
+   ```
 
-### Log Analysis
-```bash
-# View SSH manager logs
-tail -f /var/log/ssh-manager.log
+2. **Install Manager**:
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/mkkelati/NewScript2/master/xray-manager.sh -o /usr/local/bin/xray-manager && chmod +x /usr/local/bin/xray-manager
+   ```
 
-# View SSH authentication logs
-tail -f /var/log/auth.log | grep sshd
+3. **Run Manager**:
+   ```bash
+   sudo xray-manager
+   ```
 
-# View V2Ray logs
-tail -f /var/log/v2ray/error.log
-```
+---
 
-## Advanced Configuration
+## 📄 Version History
 
-### Custom V2Ray Settings
-Edit `/usr/local/etc/v2ray/config.json` for advanced configurations:
-- Custom routing rules
-- DNS settings
-- Traffic statistics
-- Multiple inbound protocols
+### v3.0 - Professional Manager
+- Complete user management system
+- Real-time monitoring
+- Automatic cleanup and backups
+- Command-line interface
+- Professional menu system
 
-### Stunnel Optimization
-Edit `/etc/stunnel/stunnel.conf` for performance tuning:
-- Connection limits
-- Timeout settings
-- SSL cipher preferences
-- Logging levels
+### v2.0 - Enhanced Setup
+- Custom domain support
+- SSL certificate automation
+- System optimization
+- CDN compatibility
 
-## License
+### v1.0 - Basic Setup
+- Initial Xray installation
+- Basic VLESS configuration
+- Manual setup process
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+---
 
-## Contributing
+**Repository**: [https://github.com/mkkelati/NewScript2](https://github.com/mkkelati/NewScript2)
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly on Ubuntu 18.04, 20.04, and 22.04
-5. Submit a pull request
-
-## Support
-
-For issues and questions:
-1. Check the troubleshooting section
-2. Review log files for error messages
-3. Create an issue on GitHub with:
-   - Ubuntu version
-   - Error messages
-   - Steps to reproduce
-
-## Changelog
-
-### v1.0 - Initial Release
-- Menu-based interface implementation
-- SSH account management
-- Stunnel SSL tunnel configuration
-- V2Ray Vmess/Vless setup
-- QR code generation
-- Config template generation
-- Comprehensive logging
-- Input validation and security
-- Ubuntu 18.04, 20.04, 22.04 support 
+**Support**: Create an issue on GitHub for support and feature requests. 
